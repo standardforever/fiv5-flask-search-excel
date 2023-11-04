@@ -1,6 +1,6 @@
 blinker
-click==8.1.7
-Flask==3.0.0
+click
+Flask
 Flask-SQLAlchemy==3.1.1
 greenlet==3.0.1
 itsdangerous==2.1.2

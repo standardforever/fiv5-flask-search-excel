@@ -287,54 +287,5 @@ def search():
 
 
 
-
-
-
-# def country_year(brand, category):
-#     file = './sheet/BrandPresentFrom.xlsx'
-#     country_json = {}
-#     year_data = pd.read_excel(file)
-
-#     igaunija_list = ['Igaunija', 'Lietuva', 'Latvija', 'Baltija']
-#     igaunija_list_abb = {'Igaunija':'EE', 'Lietuva': 'LT', 'Latvija': 'LV', 'Baltija':'BAL'}
-
-#     for ig in igaunija_list:
-#         first_occurrence_index = year_data.columns.get_loc(ig)
-
-#         data_subset = year_data.iloc[:, first_occurrence_index:first_occurrence_index + 11]
-#         if ig == 'Igaunija' or ig == 'Lietuva':
-#             data_subset = year_data.iloc[:, first_occurrence_index:first_occurrence_index + 8]
-
-#         first_two_columns = year_data.iloc[:, :2]
-#         concatenated_data = pd.concat([first_two_columns, data_subset], axis=1)
-
-#         concatenated_data.columns = concatenated_data.iloc[0]
-
-#         concatenated_data = concatenated_data.drop(concatenated_data.index[0])
-
-#         # Reset the index to start from 0
-#         concatenated_data = concatenated_data.reset_index(drop=True)
-
-#         filtered_data = concatenated_data[concatenated_data['Brand'] == brand]
-        
-#         filtered_data = filtered_data[filtered_data['Category'] == category]
-#         print(filtered_data, '\n\n\n\n\n')
-        
-
-#         last_non_nan_column = None
-
-#         for column in filtered_data.columns[3:]:
-#             last_non_nan_value = filtered_data[column].last_valid_index()
-#             if last_non_nan_value is not None:
-#                 last_non_nan_column = column
-
-#         # Check if there is a last non-NaN column
-#         if last_non_nan_column is not None:
-#             country_json[igaunija_list_abb[ig]] = last_non_nan_column
-#         else:
-#             country_json[igaunija_list_abb[ig]] = last_non_nan_column
-#     return country_json   
-
-
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)

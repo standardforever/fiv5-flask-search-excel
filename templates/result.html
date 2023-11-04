@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      }
+      .table-container {
+        white-space: nowrap;
+        display: flex;
+        flex-wrap: nowrap;
+      }
+
+      .table-container table {
+        flex: 0 0 auto;
+      }
+      .horizontal-slider {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        position: fixed;
+        bottom: 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 40%;
+        float: left; /* To place the tables side by side */
+        margin-left: 90px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+      .clear {
+        clear: both;
+      }
+      a {
+        margin-left: 90px;
+        text-decoration: none;
+        border: 1px solid #3498db;
+        background-color: #3498db;
+        padding: 10px;
+        border-radius: 2px;
+        color: white;
+      }
+      @media (max-width: 600px) {
+        .table-container {
+          overflow-x: scroll;
+          white-space: nowrap;
+        }
+        table {
+          width: 100%; /* Full width on small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <table style="width: 20%">
+      <tr>
+        <th style="background-color: lightgrey">Brand name</th>
+        <th style="font-weight: 100">{{ brand_name }}</th>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">Category</td>
+        <td>{{category_name}}</td>
+      </tr>
+    </table>
+    <div class="clear"></div>
+    <br />
+    <br />
+    <br />
+    <div class="table-container">
+    {% if year_2023 %}
+    <table>
+      <tr>
+        <th>2023</th>
+        <th style="background-color: lightblue">EE</th>
+        <th style="background-color: red">LV</th>
+        <th style="background-color: lightgreen">LT</th>
+        <th style="background-color: yellow">BALTIC</th>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
+        <td>{{ country_ee_2023[0] }}</td>
+        <td>{{ country_lv_2023[0] }}</td>
+        <td>{{ country_lt_2023[0] }}</td>
+        <td>{{ baltic_2023[0] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Bravery
+        </td>
+        <td>{{ country_ee_2023[1] }}</td>
+        <td>{{ country_lv_2023[1] }}</td>
+        <td>{{ country_lt_2023[1] }}</td>
+        <td>{{ baltic_2023[1] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Quality
+        </td>
+        <td>{{ country_ee_2023[2] }}</td>
+        <td>{{ country_lv_2023[2] }}</td>
+        <td>{{ country_lt_2023[2] }}</td>
+        <td>{{ baltic_2023[2] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Value for money
+        </td>
+        <td>{{ country_ee_2023[3] }}</td>
+        <td>{{ country_lv_2023[3] }}</td>
+        <td>{{ country_lt_2023[3] }}</td>
+        <td>{{ baltic_2023[3] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Environment friendliness
+        </td>
+        <td>{{ country_ee_2023[4] }}</td>
+        <td>{{ country_lv_2023[4] }}</td>
+        <td>{{ country_lt_2023[4] }}</td>
+        <td>{{ baltic_2023[4] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Social responsibility
+        </td>
+        <td>{{ country_ee_2023[5] }}</td>
+        <td>{{ country_lv_2023[5] }}</td>
+        <td>{{ country_lt_2023[5] }}</td>
+        <td>{{ baltic_2023[5] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Users
+        </td>
+        <td>{{ country_ee_2023[6] }}</td>
+        <td>{{ country_lv_2023[6] }}</td>
+        <td>{{ country_lt_2023[6] }}</td>
+        <td>{{ baltic_2023[6] }}</td>
+      </tr>
+    </table>
+    {% endif %} {% if year_2022 %}
+    <table>
+      <tr>
+        <th>2022</th>
+        <th style="background-color: lightblue">EE</th>
+        <th style="background-color: red">LV</th>
+        <th style="background-color: lightgreen">LT</th>
+        <th style="background-color: yellow">BALTIC</th>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
+        <td>{{ country_ee_2022[0] }}</td>
+        <td>{{ country_lv_2022[0] }}</td>
+        <td>{{ country_lt_2022[0] }}</td>
+        <td>{{ baltic_2022[0] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Uniquness
+        </td>
+        <td>{{ country_ee_2022[1] }}</td>
+        <td>{{ country_lv_2022[1] }}</td>
+        <td>{{ country_lt_2022[1] }}</td>
+        <td>{{ baltic_2022[1] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Quality
+        </td>
+        <td>{{ country_ee_2022[2] }}</td>
+        <td>{{ country_lv_2022[2] }}</td>
+        <td>{{ country_lt_2022[2] }}</td>
+        <td>{{ baltic_2022[2] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Value for money
+        </td>
+        <td>{{ country_ee_2022[3] }}</td>
+        <td>{{ country_lv_2022[3] }}</td>
+        <td>{{ country_lt_2022[3] }}</td>
+        <td>{{ baltic_2022[3] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Environment friendliness
+        </td>
+        <td>{{ country_ee_2022[4] }}</td>
+        <td>{{ country_lv_2022[4] }}</td>
+        <td>{{ country_lt_2022[4] }}</td>
+        <td>{{ baltic_2022[4] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Social responsibility
+        </td>
+        <td>{{ country_ee_2022[5] }}</td>
+        <td>{{ country_lv_2022[5] }}</td>
+        <td>{{ country_lt_2022[5] }}</td>
+        <td>{{ baltic_2022[5] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Users
+        </td>
+        <td>{{ country_ee_2022[6] }}</td>
+        <td>{{ country_lv_2022[6] }}</td>
+        <td>{{ country_lt_2022[6] }}</td>
+        <td>{{ baltic_2022[6] }}</td>
+      </tr>
+    </table>
+
+    {% endif %} {% if year_2021 %}
+    <table>
+      <tr>
+        <th>2021</th>
+        <th style="background-color: lightblue">EE</th>
+        <th style="background-color: red">LV</th>
+        <th style="background-color: lightgreen">LT</th>
+        <th style="background-color: yellow">BALTIC</th>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
+        <td>{{ country_ee_2021[0] }}</td>
+        <td>{{ country_lv_2021[0] }}</td>
+        <td>{{ country_lt_2021[0] }}</td>
+        <td>{{ baltic_2021[0] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Uniquness
+        </td>
+        <td>{{ country_ee_2021[1] }}</td>
+        <td>{{ country_lv_2021[1] }}</td>
+        <td>{{ country_lt_2021[1] }}</td>
+        <td>{{ baltic_2021[1] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Quality
+        </td>
+        <td>{{ country_ee_2021[2] }}</td>
+        <td>{{ country_lv_2021[2] }}</td>
+        <td>{{ country_lt_2021[2] }}</td>
+        <td>{{ baltic_2021[2] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Value for money
+        </td>
+        <td>{{ country_ee_2021[3] }}</td>
+        <td>{{ country_lv_2021[3] }}</td>
+        <td>{{ country_lt_2021[3] }}</td>
+        <td>{{ baltic_2021[3] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Environment friendliness
+        </td>
+        <td>{{ country_ee_2021[4] }}</td>
+        <td>{{ country_lv_2021[4] }}</td>
+        <td>{{ country_lt_2021[4] }}</td>
+        <td>{{ baltic_2021[4] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Social responsibility
+        </td>
+        <td>{{ country_ee_2021[5] }}</td>
+        <td>{{ country_lv_2021[5] }}</td>
+        <td>{{ country_lt_2021[5] }}</td>
+        <td>{{ baltic_2021[5] }}</td>
+      </tr>
+      <tr>
+    </table>
+
+    {% endif %} {% if year_2020 %}
+    <table>
+      <tr>
+        <th>2020</th>
+        <th style="background-color: lightblue">EE</th>
+        <th style="background-color: red">LV</th>
+        <th style="background-color: lightgreen">LT</th>
+        <th style="background-color: yellow">BALTIC</th>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
+        <td>{{ country_ee_2020[0] }}</td>
+        <td>{{ country_lv_2020[0] }}</td>
+        <td>{{ country_lt_2020[0] }}</td>
+        <td>{{ baltic_2020[0] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Uniquness
+        </td>
+        <td>{{ country_ee_2020[1] }}</td>
+        <td>{{ country_lv_2020[1] }}</td>
+        <td>{{ country_lt_2020[1] }}</td>
+        <td>{{ baltic_2020[1] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Quality
+        </td>
+        <td>{{ country_ee_2020[2] }}</td>
+        <td>{{ country_lv_2020[2] }}</td>
+        <td>{{ country_lt_2020[2] }}</td>
+        <td>{{ baltic_2020[2] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Value for money
+        </td>
+        <td>{{ country_ee_2020[3] }}</td>
+        <td>{{ country_lv_2020[3] }}</td>
+        <td>{{ country_lt_2020[3] }}</td>
+        <td>{{ baltic_2020[3] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Environment friendliness
+        </td>
+        <td>{{ country_ee_2020[4] }}</td>
+        <td>{{ country_lv_2020[4] }}</td>
+        <td>{{ country_lt_2020[4] }}</td>
+        <td>{{ baltic_2020[4] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Social responsibility
+        </td>
+        <td>{{ country_ee_2020[5] }}</td>
+        <td>{{ country_lv_2020[5] }}</td>
+        <td>{{ country_lt_2020[5] }}</td>
+        <td>{{ baltic_2020[5] }}</td>
+      </tr>
+      <tr>
+    </table>
+
+    {% endif %} {% if year_2019 %}
+    <table>
+      <tr>
+        <th>2019</th>
+        <th style="background-color: lightblue">EE</th>
+        <th style="background-color: red">LV</th>
+        <th style="background-color: lightgreen">LT</th>
+        <th style="background-color: yellow">BALTIC</th>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
+        <td>{{ country_ee_2019[0] }}</td>
+        <td>{{ country_lv_2019[0] }}</td>
+        <td>{{ country_lt_2019[0] }}</td>
+        <td>{{ baltic_2019[0] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Uniquness
+        </td>
+        <td>{{ country_ee_2019[1] }}</td>
+        <td>{{ country_lv_2019[1] }}</td>
+        <td>{{ country_lt_2019[1] }}</td>
+        <td>{{ baltic_2019[1] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Quality
+        </td>
+        <td>{{ country_ee_2019[2] }}</td>
+        <td>{{ country_lv_2019[2] }}</td>
+        <td>{{ country_lt_2019[2] }}</td>
+        <td>{{ baltic_2019[2] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Value for money
+        </td>
+        <td>{{ country_ee_2019[3] }}</td>
+        <td>{{ country_lv_2019[3] }}</td>
+        <td>{{ country_lt_2019[3] }}</td>
+        <td>{{ baltic_2019[3] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Environment friendliness
+        </td>
+        <td>{{ country_ee_2019[4] }}</td>
+        <td>{{ country_lv_2019[4] }}</td>
+        <td>{{ country_lt_2019[4] }}</td>
+        <td>{{ baltic_2019[4] }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background-color: lightgrey">
+          Social responsibility
+        </td>
+        <td>{{ country_ee_2019[5] }}</td>
+        <td>{{ country_lv_2019[5] }}</td>
+        <td>{{ country_lt_2019[5] }}</td>
+        <td>{{ baltic_2019[5] }}</td>
+      </tr>
+      <tr>
+    </table>
+
+    {% endif %}
+    </div>
+    <div class="clear"></div>
+    <br />
+    <br />
+    <a href="/" class="btn btn-primary">Go back to search</a>
+  </body>
+</html>

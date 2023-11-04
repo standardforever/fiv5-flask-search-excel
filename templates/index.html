@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Brand Info Search</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #f5f5f5;
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        max-width: 400px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #3498db;
+      }
+
+      label {
+        font-weight: bold;
+        color: #555;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        color: #555;
+        background: #ecf0f1;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out; /* Add a transition for the background */
+      }
+
+      button:hover {
+        background: #2980b9;
+      }
+      .suggestions {
+        max-height: 150px; /* Limit the height to 150px and add scroll if needed */
+        overflow-y: auto;
+        border: 1px solid #ccc;
+      }
+
+      .suggestion-item {
+        padding: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out;
+      }
+
+      .suggestion-item:hover {
+        background: #f0f0f0;
+      }
+
+      /* Add a style for the logout button */
+      .logout-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #3498db;
+        padding: 10px 20px;
+        border: 1px solid #3498db;
+        border-radius: 2px;
+        color: white;
+        text-decoration: none;
+      }
+
+      /* Add hover effect for the logout button */
+      .logout-button:hover {
+        background-color: #258cd1;
+        border: 1px solid #258cd1;
+      }s
+    </style>
+  </head>
+  <body>
+    <a href="/logout" class="logout-button">Logout</a>
+
+    <div class="container">
+      <h1>Brand Info Search</h1>
+      <form method="POST" action="/search">
+        <div class="form-group">
+          <label for="brand_name">Enter Brand Name:</label>
+          <input
+            type="text"
+            name="brand_name"
+            id="brand_name"
+            placeholder="E.g., airBaltic"
+            required
+          />
+          <div id="suggestions" class="suggestions"></div>
+        </div>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var inputElement = document.getElementById("brand_name");
+        var suggestionsDiv = document.getElementById("suggestions");
+
+        // Access the brand names variable from the template
+        var all_brand_names = {{ brand_names | tojson | safe }};
+
+        inputElement.addEventListener("input", function() {
+            var userInput = inputElement.value;
+            suggestionsDiv.innerHTML = "";
+
+
+            // Filter brand names that match the user input
+            var matchingBrands = all_brand_names.filter(function(brand) {
+                return brand.toLowerCase().includes(userInput.toLowerCase());
+            }).slice(0, 7);
+
+            matchingBrands.forEach(function(brand) {
+                var suggestion = document.createElement("div");
+                suggestion.textContent = brand;
+                suggestion.addEventListener("click", function() {
+                    inputElement.value = brand;
+                    suggestionsDiv.innerHTML = "";
+                });
+                suggestionsDiv.appendChild(suggestion);
+            });
+        });
+    });
+  </script>
+</html>

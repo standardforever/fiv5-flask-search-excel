@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      }
+      .table-container {
+        white-space: nowrap;
+        display: flex;
+        flex-wrap: nowrap;
+      }
+
+      .table-container table {
+        flex: 0 0 auto;
+      }
+      .horizontal-slider {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        position: fixed;
+        bottom: 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 40%;
+        float: left; /* To place the tables side by side */
+        margin-left: 90px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+      .clear {
+        clear: both;
+      }
+      a {
+        margin-left: 90px;
+        text-decoration: none;
+        border: 1px solid #3498db;
+        background-color: #3498db;
+        padding: 10px;
+        border-radius: 2px;
+        color: white;
+      }
+      @media (max-width: 600px) {
+        .table-container {
+          overflow-x: scroll;
+          white-space: nowrap;
+        }
+        table {
+          width: 100%; /* Full width on small screens */
+        }
+      }
+
+       /* Add a style for the logout button */
+       .logout-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #3498db;
+        padding: 10px 20px;
+        border: 1px solid #3498db;
+        border-radius: 2px;
+        color: white;
+        text-decoration: none;
+      }
+
+      /* Add hover effect for the logout button */
+      .logout-button:hover {
+        background-color: #258cd1;
+        border: 1px solid #258cd1;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/logout" class="logout-button">Logout</a>
+
+        {% for category, category_data in category_names.items() %}
+        <table style="width: 20%">
+            <tr>
+                <th style="background-color: lightgrey">Brand name</th>
+                <th style="font-weight: 100">{{ brand_name }}</th>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; background-color: lightgrey">Category</td>
+                <td>{{ category }}</td>
+            </tr>
+            {% for country, year in category_data.country_year.items() %}
+                {% if year is not none %}
+                <tr>
+                    <td>In the study since [{{country}}] </td>
+                    <td>{{ year }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        
+          <div class="clear"></div>
+          <br />
+          <br />
+          <br />
+              <div class="table-container">
+                {% if category_data.years['2023'] %}
+                <table>
+                    <tr>
+                      <th>2023</th>
+                      <th style="background-color: lightblue">EE</th>
+                      <th style="background-color: red">LV</th>
+                      <th style="background-color: lightgreen">LT</th>
+                      <th style="background-color: yellow">BALTIC</th>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
+                      <td>{{ category_data.country_ee_2023[0] }}</td>
+                      <td>{{ category_data.country_lv_2023[0] }}</td>
+                      <td>{{ category_data.country_lt_2023[0] }}</td>
+                      <td>{{ category_data.baltic_2023[0] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Bravery
+                      </td>
+                      <td>{{ category_data.country_ee_2023[1] }}</td>
+                      <td>{{ category_data.country_lv_2023[1] }}</td>
+                      <td>{{ category_data.country_lt_2023[1] }}</td>
+                      <td>{{ category_data.baltic_2023[1] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Quality
+                      </td>
+                      <td>{{ category_data.country_ee_2023[2] }}</td>
+                      <td>{{ category_data.country_lv_2023[2] }}</td>
+                      <td>{{ category_data.country_lt_2023[2] }}</td>
+                      <td>{{ category_data.baltic_2023[2] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Value for money
+                      </td>
+                      <td>{{ category_data.country_ee_2023[3] }}</td>
+                      <td>{{ category_data.country_lv_2023[3] }}</td>
+                      <td>{{ category_data.country_lt_2023[3] }}</td>
+                      <td>{{ category_data.baltic_2023[3] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Environment friendliness
+                      </td>
+                      <td>{{ category_data.country_ee_2023[4] }}</td>
+                      <td>{{ category_data.country_lv_2023[4] }}</td>
+                      <td>{{ category_data.country_lt_2023[4] }}</td>
+                      <td>{{ category_data.baltic_2023[4] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Social responsibility
+                      </td>
+                      <td>{{ category_data.country_ee_2023[5] }}</td>
+                      <td>{{ category_data.country_lv_2023[5] }}</td>
+                      <td>{{ category_data.country_lt_2023[5] }}</td>
+                      <td>{{ category_data.baltic_2023[5] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Users
+                      </td>
+                      <td>{{ category_data.country_ee_2023[6] }}</td>
+                      <td>{{ category_data.country_lv_2023[6] }}</td>
+                      <td>{{ category_data.country_lt_2023[6] }}</td>
+                      <td>{{ category_data.baltic_2023[6] }}</td>
+                    </tr>
+                  </table>
+                  {% endif %}
+                  
+                {% if category_data.years['2022'] %}
+                  <table>
+                    <tr>
+                      <th>2022</th>
+                      <th style="background-color: lightblue">EE</th>
+                      <th style="background-color: red">LV</th>
+                      <th style="background-color: lightgreen">LT</th>
+                      <th style="background-color: yellow">BALTIC</th>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
+                      <td>{{ category_data.country_ee_2022[0] }}</td>
+                      <td>{{ category_data.country_lv_2022[0] }}</td>
+                      <td>{{ category_data.country_lt_2022[0] }}</td>
+                      <td>{{ category_data.baltic_2022[0] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Uniquness
+                      </td>
+                      <td>{{ category_data.country_ee_2022[1] }}</td>
+                      <td>{{ category_data.country_lv_2022[1] }}</td>
+                      <td>{{ category_data.country_lt_2022[1] }}</td>
+                      <td>{{ category_data.baltic_2022[1] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Quality
+                      </td>
+                      <td>{{ category_data.country_ee_2022[2] }}</td>
+                      <td>{{ category_data.country_lv_2022[2] }}</td>
+                      <td>{{ category_data.country_lt_2022[2] }}</td>
+                      <td>{{ category_data.baltic_2022[2] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Value for money
+                      </td>
+                      <td>{{ category_data.country_ee_2022[3] }}</td>
+                      <td>{{ category_data.country_lv_2022[3] }}</td>
+                      <td>{{ category_data.country_lt_2022[3] }}</td>
+                      <td>{{ category_data.baltic_2022[3] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Environment friendliness
+                      </td>
+                      <td>{{ category_data.country_ee_2022[4] }}</td>
+                      <td>{{ category_data.country_lv_2022[4] }}</td>
+                      <td>{{ category_data.country_lt_2022[4] }}</td>
+                      <td>{{ category_data.baltic_2022[4] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Social responsibility
+                      </td>
+                      <td>{{ category_data.country_ee_2022[5] }}</td>
+                      <td>{{ category_data.country_lv_2022[5] }}</td>
+                      <td>{{ category_data.country_lt_2022[5] }}</td>
+                      <td>{{ category_data.baltic_2022[5] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Users
+                      </td>
+                      <td>{{ category_data.country_ee_2022[6] }}</td>
+                      <td>{{ category_data.country_lv_2022[6] }}</td>
+                      <td>{{ category_data.country_lt_2022[6] }}</td>
+                      <td>{{ category_data.baltic_2022[6] }}</td>
+                    </tr>
+                  </table>
+              
+                  {% endif %}
+                {% if category_data.years['2021'] %}
+                  <table>
+                    <tr>
+                      <th>2021</th>
+                      <th style="background-color: lightblue">EE</th>
+                      <th style="background-color: red">LV</th>
+                      <th style="background-color: lightgreen">LT</th>
+                      <th style="background-color: yellow">BALTIC</th>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
+                      <td>{{ category_data.country_ee_2021[0] }}</td>
+                      <td>{{ category_data.country_lv_2021[0] }}</td>
+                      <td>{{ category_data.country_lt_2021[0] }}</td>
+                      <td>{{ category_data.baltic_2021[0] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Uniquness
+                      </td>
+                      <td>{{ category_data.country_ee_2021[1] }}</td>
+                      <td>{{ category_data.country_lv_2021[1] }}</td>
+                      <td>{{ category_data.country_lt_2021[1] }}</td>
+                      <td>{{ category_data.baltic_2021[1] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Quality
+                      </td>
+                      <td>{{ category_data.country_ee_2021[2] }}</td>
+                      <td>{{ category_data.country_lv_2021[2] }}</td>
+                      <td>{{ category_data.country_lt_2021[2] }}</td>
+                      <td>{{ category_data.baltic_2021[2] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Value for money
+                      </td>
+                      <td>{{ category_data.country_ee_2021[3] }}</td>
+                      <td>{{ category_data.country_lv_2021[3] }}</td>
+                      <td>{{ category_data.country_lt_2021[3] }}</td>
+                      <td>{{ category_data.baltic_2021[3] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Environment friendliness
+                      </td>
+                      <td>{{ category_data.country_ee_2021[4] }}</td>
+                      <td>{{ category_data.country_lv_2021[4] }}</td>
+                      <td>{{ category_data.country_lt_2021[4] }}</td>
+                      <td>{{ category_data.baltic_2021[4] }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; background-color: lightgrey">
+                        Social responsibility
+                      </td>
+                      <td>{{ category_data.country_ee_2021[5] }}</td>
+                      <td>{{ category_data.country_lv_2021[5] }}</td>
+                      <td>{{ category_data.country_lt_2021[5] }}</td>
+                      <td>{{ category_data.baltic_2021[5] }}</td>
+                    </tr>
+                    <tr>
+                  </table>
+              
+                  {% endif %}
+                  </div>
+              <br>
+        {% endfor %}
+
+
+      <div class="clear"></div>
+    <br />
+    <br />
+    <a href="/" class="btn btn-primary">Go back to search</a>
+  </body>
+</html>

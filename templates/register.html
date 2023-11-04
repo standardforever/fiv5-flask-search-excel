@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            background-color: #236B8E;
+            color: #fff;
+            padding: 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .word {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #236B8E;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #094a64;
+        }
+
+        .bottom {
+            text-align: center;
+        }
+
+        .bottom a {
+            color: #236B8E;
+            text-decoration: none;
+        }
+
+        .bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Message styles */
+        .msg {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .alert {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px;
+            font-weight: bold;
+        }
+
+        .alert-success {
+            background-color: #4CAF50;
+            color: #FFFFFF;
+        }
+
+        .alert-danger {
+            background-color: #f44336;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="word">Register</h1>
+        </div>
+
+        <form action="{{ url_for('register') }}" method="post">
+            <div class="msg">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="input-container">
+                <input id="username" name="name" type="text" placeholder="Enter Your Full Name" required>
+            </div>
+
+            <div class="input-container">
+                <input id="password" name="password" type="password" placeholder="Enter Your Password" required>
+            </div>
+
+            <div class="input-container">
+                <input id="password" name="confirm_password" type="password" placeholder="Enter Your confirm Password" required>
+            </div>
+
+            <div class="input-container">
+                <input id="email" name="email" type="text" placeholder="Enter Your Email" required>
+            </div>
+
+            <div class="input-container">
+                <input type="submit" value="Sign Up">
+            </div>
+        </form>
+
+        <p class="bottom">Already have an account? <a href="{{url_for('login')}}">Sign In here</a></p>
+    </div>
+</body>
+</html>

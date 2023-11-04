@@ -8,7 +8,7 @@ import copy
 from datetime import datetime
 import uuid
 
-app = Flask(__name__,template_folder='templates')
+app = Flask(__name__, template_folder='templates')
 
 # Define the directory where your data files are located
 data_directory = './'
@@ -288,4 +288,4 @@ def search():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5000)
+    app.run()

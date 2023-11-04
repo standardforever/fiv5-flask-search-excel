@@ -3,6 +3,7 @@ click
 Flask
 Flask-SQLAlchemy
 greenlet
+Gunicorn
 itsdangerous
 Jinja2
 MarkupSafe
@@ -11,6 +12,7 @@ packaging
 pandas
 plotly
 python-dateutil
+openpyxl
 pytz
 six
 SQLAlchemy

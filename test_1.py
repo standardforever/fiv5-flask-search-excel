@@ -219,6 +219,7 @@ def search():
                         print(i)
                         print(category_names)
                         if category_names.get(brand_info_dict[i]['Category']) == None:
+                            print('**********************************************************************8udfuddddddddddddds')
                             default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
 

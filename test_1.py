@@ -216,12 +216,13 @@ def search():
             if brand_info_dict != []:
                 if brand_info_dict[0]['Year'] == 2023:
                     for i in range(len(brand_info_dict)):
+                        print(category_names.get(brand_info_dict[i]['Category']))
                         if category_names.get(brand_info_dict[i]['Category']) == None:
-                            print(country_year(brand_name, brand_info_dict[i]['Category']))
                             default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
 
                         category_names[brand_info_dict[i]['Category']]['years']["2023"] = True
+                        # print(country_year(brand_name, brand_info_dict[i]['Category']))
 
                         if brand_info_dict[i]['Country'] == 'EE':
                             for j in country_2023:
@@ -283,8 +284,8 @@ def search():
                         if brand_info_dict[i]['Country'] == 'BALTIC':
                             for j in country:
                                 category_names[brand_info_dict[i]['Category']]['baltic_2021'].append(brand_info_dict[i][j])
-    data = {'EE': 2015.0, 'LT': 2015.0, 'LV': 2012.0, 'BAL': 2012.0}
-    return render_template('main.html', category_names = category_names, brand_info_list=brand_info_list, brand_name= show_brand, country_data=data)
+    
+    return render_template('main.html', category_names = category_names, brand_info_list=brand_info_list, brand_name= show_brand)
 
 
 

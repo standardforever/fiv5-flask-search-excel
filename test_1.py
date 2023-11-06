@@ -243,6 +243,7 @@ def search():
                 if brand_info_dict[0]['Year'] == 2022:
                     for i in range(len(brand_info_dict)):
                         if category_names.get(brand_info_dict[i]['Category']) == None:
+                            default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
                             print('**********************************2')
                             
@@ -266,6 +267,7 @@ def search():
                 if brand_info_dict[0]['Year'] == 2021:
                     for i in range(len(brand_info_dict)):
                         if category_names.get(brand_info_dict[i]['Category']) == None:
+                            default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
                             print('**********************************3')
                         category_names[brand_info_dict[i]['Category']]['years']["2021"] = True

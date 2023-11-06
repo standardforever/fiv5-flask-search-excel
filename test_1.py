@@ -174,7 +174,7 @@ def search():
     brand_info_list = []  # List to store results for multiple years
 
     default = {'baltic_2021': [], 'country_lt_2021': [], 'country_lv_2021': [], 'country_ee_2021': [], 
-                'baltic_2022': [], 'country_lt_2022': [], 'country_lv_2022': [], 'country_ee_2022': [],
+                'baltic_2022': [], 'country_lt_2022': [], 'country_lv_2022': [], 'country_ee_2022': [], "country_year": {},
                 'baltic_2023': [], 'country_lt_2023': [], 'country_lv_2023': [], 'country_ee_2023': [], "years": {"2023": False, "2022": False, "2021": False}}
     category_names = {}
     show_brand = ""

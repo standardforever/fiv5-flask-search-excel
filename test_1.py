@@ -218,7 +218,7 @@ def search():
                     for i in range(len(brand_info_dict)):
                         if category_names.get(brand_info_dict[i]['Category']) == None:
                             default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
-                            print('**********************************1')
+                            print('**********************************1', brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
 
                         category_names[brand_info_dict[i]['Category']]['years']["2023"] = True
@@ -245,7 +245,7 @@ def search():
                         if category_names.get(brand_info_dict[i]['Category']) == None:
                             default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
-                            print('**********************************2')
+                            print('**********************************2', brand_info_dict[i]['Category'])
                             
                         category_names[brand_info_dict[i]['Category']]['years']["2022"] = True
                         if brand_info_dict[i]['Country'] == 'EE':
@@ -269,7 +269,7 @@ def search():
                         if category_names.get(brand_info_dict[i]['Category']) == None:
                             default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
-                            print('**********************************3')
+                            print('**********************************3', brand_info_dict[i]['Category'])
                         category_names[brand_info_dict[i]['Category']]['years']["2021"] = True
 
                         if brand_info_dict[i]['Country'] == 'EE':

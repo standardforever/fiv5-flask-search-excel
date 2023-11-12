@@ -659,8 +659,10 @@
               
                   <p>
                       <strong>{{ brand_name }}</strong> competitors from <strong>{{ category }}</strong> category:
-                      {% for competitor in brands[1:] %}
-                          <a href="#" class="competitor" data-name="{{ competitor }}">{{ competitor }}</a>{% if not loop.last %}, {% endif %}
+                      {% for competitor in brands %}
+                          {% if competitor != brand_name %}
+                            <a href="#" class="competitor" data-name="{{ competitor }}">{{ competitor }}</a>{% if not loop.last %}, {% endif %}
+                          {% endif %}
                       {% endfor %}.
                   </p>
               

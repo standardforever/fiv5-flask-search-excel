@@ -38,15 +38,7 @@
       .clear {
         clear: both;
       }
-      a {
-        margin-left: 90px;
-        text-decoration: none;
-        border: 1px solid #3498db;
-        background-color: #3498db;
-        padding: 10px;
-        border-radius: 2px;
-        color: white;
-      }
+      
       @media (max-width: 600px) {
         .table-container {
           overflow-x: scroll;
@@ -75,7 +67,89 @@
         background-color: #258cd1;
         border: 1px solid #258cd1;
       }
+
+
+      .category-container {
+        margin-bottom: 20px; /* Add some bottom margin to separate categories */
+    }
+
+    .competitor {
+        margin-right: 5px; /* Add some right margin to separate competitors */
+    }
     </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <style>
+      .container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        max-width: 400px;
+        margin-left: 90px;
+      }
+
+      label {
+        font-weight: bold;
+        color: #555;
+      }
+
+ 
+      input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        color: #555;
+        background: #ecf0f1;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out; /* Add a transition for the background */
+      }
+
+      button:hover {
+        background: #2980b9;
+      }
+      .suggestions {
+        max-height: 150px; /* Limit the height to 150px and add scroll if needed */
+        overflow-y: auto;
+        border: 1px solid #ccc;
+      }
+
+      .suggestion-item {
+        padding: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out;
+      }
+
+      .suggestion-item:hover {
+        background: #f0f0f0;
+      }
+
+      .category-container {
+        margin-left: 90px;
+        
+      }
+
+    </style>
+
+
+
+
   </head>
   <body>
     <a href="/logout" class="logout-button">Logout</a>
@@ -109,71 +183,159 @@
                 <table>
                     <tr>
                       <th>2023</th>
+                      {% if category_data.country_ee_2023|length > 0 %}
                       <th style="background-color: lightblue">EE</th>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2023|length > 0 %}
                       <th style="background-color: red">LV</th>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2023|length > 0 %}
                       <th style="background-color: lightgreen">LT</th>
-                      <th style="background-color: yellow">BALTIC</th>
+                      {% endif %}
+                      
+                      {% if category_data.baltic_2023|length > 0 %}
+                        <th style="background-color: yellow">BALTIC</th>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
-                      <td>{{ category_data.country_ee_2023[0] }}</td>
-                      <td>{{ category_data.country_lv_2023[0] }}</td>
-                      <td>{{ category_data.country_lt_2023[0] }}</td>
-                      <td>{{ category_data.baltic_2023[0] }}</td>
+                      {% if category_data.country_ee_2023|length > 0 %}
+                        <td>{{ category_data.country_ee_2023[0] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2023|length > 0 %}
+                       <td>{{ category_data.country_lv_2023[0] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2023|length > 0 %}
+                        <td>{{ category_data.country_lt_2023[0] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2023|length > 0 %}
+                        <td>{{ category_data.baltic_2023[0] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Bravery
                       </td>
+                      {% if category_data.country_ee_2023|length > 0 %}
                       <td>{{ category_data.country_ee_2023[1] }}</td>
-                      <td>{{ category_data.country_lv_2023[1] }}</td>
+                    {% endif %}
+
+                    {% if category_data.country_lv_2023|length > 0 %}
+                     <td>{{ category_data.country_lv_2023[1] }}</td>
+                    {% endif %}
+
+                    {% if category_data.country_lt_2023|length > 0 %}
                       <td>{{ category_data.country_lt_2023[1] }}</td>
+                    {% endif %}
+
+                    {% if category_data.baltic_2023|length > 0 %}
                       <td>{{ category_data.baltic_2023[1] }}</td>
+                    {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Quality
                       </td>
-                      <td>{{ category_data.country_ee_2023[2] }}</td>
+                      {% if category_data.country_ee_2023|length > 0 %}
+                        <td>{{ category_data.country_ee_2023[2] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2023|length > 0 %}
                       <td>{{ category_data.country_lv_2023[2] }}</td>
-                      <td>{{ category_data.country_lt_2023[2] }}</td>
-                      <td>{{ category_data.baltic_2023[2] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2023|length > 0 %}
+                        <td>{{ category_data.country_lt_2023[2] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2023|length > 0 %}
+                        <td>{{ category_data.baltic_2023[2] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Value for money
                       </td>
-                      <td>{{ category_data.country_ee_2023[3] }}</td>
+                      {% if category_data.country_ee_2023|length > 0 %}
+                        <td>{{ category_data.country_ee_2023[3] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2023|length > 0 %}
                       <td>{{ category_data.country_lv_2023[3] }}</td>
-                      <td>{{ category_data.country_lt_2023[3] }}</td>
-                      <td>{{ category_data.baltic_2023[3] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2023|length > 0 %}
+                        <td>{{ category_data.country_lt_2023[3] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2023|length > 0 %}
+                        <td>{{ category_data.baltic_2023[3] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Environment friendliness
                       </td>
-                      <td>{{ category_data.country_ee_2023[4] }}</td>
+                      {% if category_data.country_ee_2023|length > 0 %}
+                        <td>{{ category_data.country_ee_2023[4] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2023|length > 0 %}
                       <td>{{ category_data.country_lv_2023[4] }}</td>
-                      <td>{{ category_data.country_lt_2023[4] }}</td>
-                      <td>{{ category_data.baltic_2023[4] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2023|length > 0 %}
+                        <td>{{ category_data.country_lt_2023[4] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2023|length > 0 %}
+                        <td>{{ category_data.baltic_2023[4] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Social responsibility
                       </td>
-                      <td>{{ category_data.country_ee_2023[5] }}</td>
+                      {% if category_data.country_ee_2023|length > 0 %}
+                        <td>{{ category_data.country_ee_2023[5] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2023|length > 0 %}
                       <td>{{ category_data.country_lv_2023[5] }}</td>
-                      <td>{{ category_data.country_lt_2023[5] }}</td>
-                      <td>{{ category_data.baltic_2023[5] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2023|length > 0 %}
+                        <td>{{ category_data.country_lt_2023[5] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2023|length > 0 %}
+                        <td>{{ category_data.baltic_2023[5] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Users
                       </td>
-                      <td>{{ category_data.country_ee_2023[6] }}</td>
+                      {% if category_data.country_ee_2023|length > 0 %}
+                        <td>{{ category_data.country_ee_2023[6] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2023|length > 0 %}
                       <td>{{ category_data.country_lv_2023[6] }}</td>
-                      <td>{{ category_data.country_lt_2023[6] }}</td>
-                      <td>{{ category_data.baltic_2023[6] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2023|length > 0 %}
+                        <td>{{ category_data.country_lt_2023[6] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2023|length > 0 %}
+                        <td>{{ category_data.baltic_2023[6] }}</td>
+                      {% endif %}
                     </tr>
                   </table>
                   {% endif %}
@@ -182,71 +344,159 @@
                   <table>
                     <tr>
                       <th>2022</th>
-                      <th style="background-color: lightblue">EE</th>
-                      <th style="background-color: red">LV</th>
-                      <th style="background-color: lightgreen">LT</th>
-                      <th style="background-color: yellow">BALTIC</th>
+                      {% if category_data.country_ee_2022|length > 0 %}
+                        <th style="background-color: lightblue">EE</th>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2022|length > 0 %}
+                        <th style="background-color: red">LV</th>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2022|length > 0 %}
+                        <th style="background-color: lightgreen">LT</th>
+                      {% endif %}
+                      
+                      {% if category_data.baltic_2022|length > 0 %}
+                        <th style="background-color: yellow">BALTIC</th>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
-                      <td>{{ category_data.country_ee_2022[0] }}</td>
+                      {% if category_data.country_ee_2022|length > 0 %}
+                        <td>{{ category_data.country_ee_2022[0] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2022|length > 0 %}
                       <td>{{ category_data.country_lv_2022[0] }}</td>
-                      <td>{{ category_data.country_lt_2022[0] }}</td>
-                      <td>{{ category_data.baltic_2022[0] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2022|length > 0 %}
+                        <td>{{ category_data.country_lt_2022[0] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2022|length > 0 %}
+                        <td>{{ category_data.baltic_2022[0] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Uniquness
                       </td>
-                      <td>{{ category_data.country_ee_2022[1] }}</td>
+                      {% if category_data.country_ee_2022|length > 0 %}
+                        <td>{{ category_data.country_ee_2022[1] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2022|length > 0 %}
                       <td>{{ category_data.country_lv_2022[1] }}</td>
-                      <td>{{ category_data.country_lt_2022[1] }}</td>
-                      <td>{{ category_data.baltic_2022[1] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2022|length > 0 %}
+                        <td>{{ category_data.country_lt_2022[1] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2022|length > 0 %}
+                        <td>{{ category_data.baltic_2022[1] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Quality
                       </td>
-                      <td>{{ category_data.country_ee_2022[2] }}</td>
+                      {% if category_data.country_ee_2022|length > 0 %}
+                        <td>{{ category_data.country_ee_2022[2] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2022|length > 0 %}
                       <td>{{ category_data.country_lv_2022[2] }}</td>
-                      <td>{{ category_data.country_lt_2022[2] }}</td>
-                      <td>{{ category_data.baltic_2022[2] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2022|length > 0 %}
+                        <td>{{ category_data.country_lt_2022[2] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2022|length > 0 %}
+                        <td>{{ category_data.baltic_2022[2] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Value for money
                       </td>
-                      <td>{{ category_data.country_ee_2022[3] }}</td>
+                      {% if category_data.country_ee_2022|length > 0 %}
+                        <td>{{ category_data.country_ee_2022[3] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2022|length > 0 %}
                       <td>{{ category_data.country_lv_2022[3] }}</td>
-                      <td>{{ category_data.country_lt_2022[3] }}</td>
-                      <td>{{ category_data.baltic_2022[3] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2022|length > 0 %}
+                        <td>{{ category_data.country_lt_2022[3] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2022|length > 0 %}
+                        <td>{{ category_data.baltic_2022[3] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Environment friendliness
                       </td>
-                      <td>{{ category_data.country_ee_2022[4] }}</td>
+                      {% if category_data.country_ee_2022|length > 0 %}
+                        <td>{{ category_data.country_ee_2022[4] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2022|length > 0 %}
                       <td>{{ category_data.country_lv_2022[4] }}</td>
-                      <td>{{ category_data.country_lt_2022[4] }}</td>
-                      <td>{{ category_data.baltic_2022[4] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2022|length > 0 %}
+                        <td>{{ category_data.country_lt_2022[4] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2022|length > 0 %}
+                        <td>{{ category_data.baltic_2022[4] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Social responsibility
                       </td>
-                      <td>{{ category_data.country_ee_2022[5] }}</td>
+                      {% if category_data.country_ee_2022|length > 0 %}
+                        <td>{{ category_data.country_ee_2022[5] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2022|length > 0 %}
                       <td>{{ category_data.country_lv_2022[5] }}</td>
-                      <td>{{ category_data.country_lt_2022[5] }}</td>
-                      <td>{{ category_data.baltic_2022[5] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2022|length > 0 %}
+                        <td>{{ category_data.country_lt_2022[5] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2022|length > 0 %}
+                        <td>{{ category_data.baltic_2022[5] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Users
                       </td>
-                      <td>{{ category_data.country_ee_2022[6] }}</td>
+                      {% if category_data.country_ee_2022|length > 0 %}
+                        <td>{{ category_data.country_ee_2022[6] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2022|length > 0 %}
                       <td>{{ category_data.country_lv_2022[6] }}</td>
-                      <td>{{ category_data.country_lt_2022[6] }}</td>
-                      <td>{{ category_data.baltic_2022[6] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2022|length > 0 %}
+                        <td>{{ category_data.country_lt_2022[6] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2022|length > 0 %}
+                        <td>{{ category_data.baltic_2022[6] }}</td>
+                      {% endif %}
                     </tr>
                   </table>
               
@@ -255,62 +505,139 @@
                   <table>
                     <tr>
                       <th>2021</th>
+                      {% if category_data.country_ee_2021|length > 0 %}
                       <th style="background-color: lightblue">EE</th>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2021|length > 0 %}
                       <th style="background-color: red">LV</th>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2021|length > 0 %}
                       <th style="background-color: lightgreen">LT</th>
-                      <th style="background-color: yellow">BALTIC</th>
+                      {% endif %}
+                      
+                      {% if category_data.baltic_2021|length > 0 %}
+                        <th style="background-color: yellow">BALTIC</th>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">Lovers</td>
-                      <td>{{ category_data.country_ee_2021[0] }}</td>
+                      {% if category_data.country_ee_2021|length > 0 %}
+                        <td>{{ category_data.country_ee_2021[0] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2021|length > 0 %}
                       <td>{{ category_data.country_lv_2021[0] }}</td>
-                      <td>{{ category_data.country_lt_2021[0] }}</td>
-                      <td>{{ category_data.baltic_2021[0] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2021|length > 0 %}
+                        <td>{{ category_data.country_lt_2021[0] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2021|length > 0 %}
+                        <td>{{ category_data.baltic_2021[0] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Uniquness
                       </td>
-                      <td>{{ category_data.country_ee_2021[1] }}</td>
+                      {% if category_data.country_ee_2021|length > 0 %}
+                        <td>{{ category_data.country_ee_2021[1] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2021|length > 0 %}
                       <td>{{ category_data.country_lv_2021[1] }}</td>
-                      <td>{{ category_data.country_lt_2021[1] }}</td>
-                      <td>{{ category_data.baltic_2021[1] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2021|length > 0 %}
+                        <td>{{ category_data.country_lt_2021[1] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2021|length > 0 %}
+                        <td>{{ category_data.baltic_2021[1] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Quality
                       </td>
-                      <td>{{ category_data.country_ee_2021[2] }}</td>
+                      {% if category_data.country_ee_2021|length > 0 %}
+                        <td>{{ category_data.country_ee_2021[2] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2021|length > 0 %}
                       <td>{{ category_data.country_lv_2021[2] }}</td>
-                      <td>{{ category_data.country_lt_2021[2] }}</td>
-                      <td>{{ category_data.baltic_2021[2] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2021|length > 0 %}
+                        <td>{{ category_data.country_lt_2021[2] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2021|length > 0 %}
+                        <td>{{ category_data.baltic_2021[2] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Value for money
                       </td>
-                      <td>{{ category_data.country_ee_2021[3] }}</td>
+                      {% if category_data.country_ee_2021|length > 0 %}
+                        <td>{{ category_data.country_ee_2021[3] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2021|length > 0 %}
                       <td>{{ category_data.country_lv_2021[3] }}</td>
-                      <td>{{ category_data.country_lt_2021[3] }}</td>
-                      <td>{{ category_data.baltic_2021[3] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2021|length > 0 %}
+                        <td>{{ category_data.country_lt_2021[3] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2021|length > 0 %}
+                        <td>{{ category_data.baltic_2021[3] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Environment friendliness
                       </td>
-                      <td>{{ category_data.country_ee_2021[4] }}</td>
+                      {% if category_data.country_ee_2021|length > 0 %}
+                        <td>{{ category_data.country_ee_2021[4] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lv_2021|length > 0 %}
                       <td>{{ category_data.country_lv_2021[4] }}</td>
-                      <td>{{ category_data.country_lt_2021[4] }}</td>
-                      <td>{{ category_data.baltic_2021[4] }}</td>
+                      {% endif %}
+
+                      {% if category_data.country_lt_2021|length > 0 %}
+                        <td>{{ category_data.country_lt_2021[4] }}</td>
+                      {% endif %}
+
+                      {% if category_data.baltic_2021|length > 0 %}
+                        <td>{{ category_data.baltic_2021[4] }}</td>
+                      {% endif %}
                     </tr>
                     <tr>
                       <td style="font-weight: bold; background-color: lightgrey">
                         Social responsibility
                       </td>
+                      {% if category_data.country_ee_2021|length > 0 %}
                       <td>{{ category_data.country_ee_2021[5] }}</td>
-                      <td>{{ category_data.country_lv_2021[5] }}</td>
+                    {% endif %}
+
+                    {% if category_data.country_lv_2021|length > 0 %}
+                    <td>{{ category_data.country_lv_2021[5] }}</td>
+                    {% endif %}
+
+                    {% if category_data.country_lt_2021|length > 0 %}
                       <td>{{ category_data.country_lt_2021[5] }}</td>
+                    {% endif %}
+
+                    {% if category_data.baltic_2021|length > 0 %}
                       <td>{{ category_data.baltic_2021[5] }}</td>
+                    {% endif %}
                     </tr>
                     <tr>
                   </table>
@@ -324,6 +651,96 @@
       <div class="clear"></div>
     <br />
     <br />
-    <a href="/" class="btn btn-primary">Go back to search</a>
+    <!-- <a href="/" class="btn btn-primary">Go back to search</a> -->
+    <div id="competitors-container">
+      <div class="category-container">
+      {% for category, brands in category_brands_dict.items() %}
+          {% if brands|length > 1 %}
+              
+                  <p>
+                      <strong>{{ brand_name }}</strong> competitors from <strong>{{ category }}</strong> category:
+                      {% for competitor in brands[1:] %}
+                          <a href="#" class="competitor" data-name="{{ competitor }}">{{ competitor }}</a>{% if not loop.last %}, {% endif %}
+                      {% endfor %}.
+                  </p>
+              
+          {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+<script>
+    // Add click event listener to competitors
+    document.getElementById('competitors-container').addEventListener('click', function (event) {
+        // Check if the clicked element is a competitor
+        if (event.target.classList.contains('competitor')) {
+            event.preventDefault();
+
+            var competitorName = event.target.getAttribute('data-name');
+
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/search';
+
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'brand_name'; 
+            input.value = competitorName;
+
+            form.appendChild(input);
+
+            document.body.appendChild(form);
+
+            // Submit the form
+            form.submit();
+        }
+    });
+</script>
+
+    <div class="container">
+      <form method="POST" action="/search">
+        <div class="form-group">
+          <label for="brand_name">Enter Brand Name:</label>
+          <input
+            type="text"
+            name="brand_name"
+            id="brand_name"
+            placeholder="E.g., airBaltic"
+            required
+          />
+          <div id="suggestions" class="suggestions"></div>
+        </div>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var inputElement = document.getElementById("brand_name");
+        var suggestionsDiv = document.getElementById("suggestions");
+
+        // Access the brand names variable from the template
+        var all_brand_names = {{ brand_names | tojson | safe }};
+
+        inputElement.addEventListener("input", function() {
+            var userInput = inputElement.value;
+            suggestionsDiv.innerHTML = "";
+
+
+            // Filter brand names that match the user input
+            var matchingBrands = all_brand_names.filter(function(brand) {
+                return brand.toLowerCase().includes(userInput.toLowerCase());
+            }).slice(0, 7);
+
+            matchingBrands.forEach(function(brand) {
+                var suggestion = document.createElement("div");
+                suggestion.textContent = brand;
+                suggestion.addEventListener("click", function() {
+                    inputElement.value = brand;
+                    suggestionsDiv.innerHTML = "";
+                });
+                suggestionsDiv.appendChild(suggestion);
+            });
+        });
+    });
+  </script>
   </body>
 </html>

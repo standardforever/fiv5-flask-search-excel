@@ -16,6 +16,12 @@ data_directory = './'
 # Define the list of columns to format as percentages
 percentage_columns = ['Lovers', 'Bravery', 'Uniquness', 'Quality', 'Value for money', 'Environment friendliness', 'Social responsibility', 'Users']
 
+admin_email = 'admin@gmail.com'         # You can add the email you want here
+admin_password = 'admin'    # You can add the password you want here
+admin_full_name = "anyname" # you can add your name here
+
+
+secrete = "jfdsjfidwfnewifje" # Any random variable is ok
 
 
 app.secret_key = 'add your app secret key here'
@@ -28,7 +34,7 @@ db = SQLAlchemy(app)
 class User(db.Model):
     """Model for uploading file"""
     id = db.Column(db.String(120), nullable=False, primary_key=True)
-    email = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), nullable=False, unique=True)
     updated_at = db.Column(db.String(120), nullable=False, default=datetime.utcnow())
     password= db.Column(db.String(200), nullable=False, unique=False)
     full_name = db.Column(db.String(200), nullable=False, unique=False)
@@ -55,6 +61,13 @@ def login():
             session['email'] = account.email
             flash('login Successfully !')
             return redirect(url_for('index'))
+        
+    try:
+        user = User(email=admin_email, password=admin_password, full_name= admin_full_name, id=str(uuid.uuid4()))
+        db.session.add(user)
+        db.session.commit()
+    except Exception as e:
+        pass
 
     return render_template('login.html', msg = msg)
 
@@ -70,6 +83,10 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    id = session.get('id')
+    user = User.query.filter_by(id=id).first()
+    if (id == None or user == None or user.email != admin_email or session.get('email') != admin_email or session.get('id') != user.id):
+        return redirect(url_for('login'))
     msg = ''
     if request.method == 'POST':
         name = request.form.get('name')
@@ -106,19 +123,22 @@ def country_year(brand, category):
     country_json = {}
     year_data = pd.read_excel(file)
 
-    igaunija_list = ['Igaunija', 'Lietuva', 'Latvija', 'Baltija']
-    igaunija_list_abb = {'Igaunija':'EE', 'Lietuva': 'LT', 'Latvija': 'LV', 'Baltija':'BAL'}
+    # igaunija_list = ['Igaunija', 'Lietuva', 'Latvija', 'Baltija']
+    # igaunija_list_abb = {'Igaunija':'EE', 'Lietuva': 'LT', 'Latvija': 'LV', 'Baltija':'BAL'}
+
+    igaunija_list = ['Igaunija', 'Lietuva', 'Latvija']
+    igaunija_list_abb = {'Igaunija':'EE', 'Lietuva': 'LT', 'Latvija': 'LV'}
+
 
     for ig in igaunija_list:
         first_occurrence_index = year_data.columns.get_loc(ig)
-
         data_subset = year_data.iloc[:, first_occurrence_index:first_occurrence_index + 11]
+    
         if ig == 'Igaunija' or ig == 'Lietuva':
             data_subset = year_data.iloc[:, first_occurrence_index:first_occurrence_index + 8]
 
         first_two_columns = year_data.iloc[:, :2]
         concatenated_data = pd.concat([first_two_columns, data_subset], axis=1)
-
         concatenated_data.columns = concatenated_data.iloc[0]
 
         concatenated_data = concatenated_data.drop(concatenated_data.index[0])
@@ -132,7 +152,7 @@ def country_year(brand, category):
 
         last_non_nan_column = None
 
-        for column in filtered_data.columns[3:]:
+        for column in filtered_data.columns[2:]:
             last_non_nan_value = filtered_data[column].last_valid_index()
             if last_non_nan_value is not None:
                 last_non_nan_column = column
@@ -149,6 +169,7 @@ def index():
     id = session.get('id')
     if (id == None or User.query.filter_by(id=id).first() == None):
         return redirect(url_for('login'))
+    
     all_brand_names = []
     excel_files = ['./DataSet_2022_test.xlsx', './DataSet_2023_test.xlsx','./DataSet_2021_test.xlsx']
     for file in excel_files:
@@ -170,7 +191,9 @@ def search():
     if (id == None or User.query.filter_by(id=id).first() == None):
         return redirect(url_for('login'))
     
+    brand_filter = []
     brand_name = request.form.get('brand_name')
+
     brand_info_list = []  # List to store results for multiple years
 
     default = {'baltic_2021': [], 'country_lt_2021': [], 'country_lv_2021': [], 'country_ee_2021': [], 
@@ -198,7 +221,7 @@ def search():
             brand_info_dict = brand_info.to_dict(orient='records')
             if brand_info_dict != []:
                 show_brand = brand_info_dict[0]['Brand_name']
-           
+        
             for record in brand_info_dict:
                 for column in percentage_columns:
                     if column in record:
@@ -218,8 +241,8 @@ def search():
                     for i in range(len(brand_info_dict)):
                         if category_names.get(brand_info_dict[i]['Category']) == None:
                             default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
-                            print('**********************************1', brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
+                            brand_filter.append(brand_info_dict[i]['Category'])
 
                         category_names[brand_info_dict[i]['Category']]['years']["2023"] = True
                         # print(country_year(brand_name, brand_info_dict[i]['Category']))
@@ -245,7 +268,8 @@ def search():
                         if category_names.get(brand_info_dict[i]['Category']) == None:
                             default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
-                            print('**********************************2', brand_info_dict[i]['Category'])
+                            brand_filter.append(brand_info_dict[i]['Category'])
+
                             
                         category_names[brand_info_dict[i]['Category']]['years']["2022"] = True
                         if brand_info_dict[i]['Country'] == 'EE':
@@ -269,7 +293,8 @@ def search():
                         if category_names.get(brand_info_dict[i]['Category']) == None:
                             default['country_year'] = country_year(brand_name, brand_info_dict[i]['Category'])
                             category_names[brand_info_dict[i]['Category']] = copy.deepcopy(default)
-                            print('**********************************3', brand_info_dict[i]['Category'])
+                            brand_filter.append(brand_info_dict[i]['Category'])
+
                         category_names[brand_info_dict[i]['Category']]['years']["2021"] = True
 
                         if brand_info_dict[i]['Country'] == 'EE':
@@ -288,8 +313,40 @@ def search():
                         if brand_info_dict[i]['Country'] == 'BALTIC':
                             for j in country:
                                 category_names[brand_info_dict[i]['Category']]['baltic_2021'].append(brand_info_dict[i][j])
-    
-    return render_template('main.html', category_names = category_names, brand_info_list=brand_info_list, brand_name= show_brand)
+    all_brand_names = []
+    excel_files = ['./DataSet_2021_test.xlsx', './DataSet_2022_test.xlsx','./DataSet_2023_test.xlsx']
+    df = ''
+    for file in excel_files:
+        df = pd.read_excel(file, engine='openpyxl')
+
+        brand_names = df['Brand_name'].tolist()
+
+        all_brand_names.extend(brand_names)
+
+    brands_name = []
+    for i in all_brand_names:
+        if i not in brands_name:
+            brands_name.append(i)
+
+    """ for link for each category in brands"""
+
+    category_brands_dict = {}
+
+    for category in brand_filter:
+        filtered_df = df[df['Category'] == category]
+
+        unique_brands = filtered_df['Brand_name'].unique()
+        
+        # Add the category and its corresponding unique brands to the dictionary
+        category_brands_dict[category] = unique_brands.tolist()
+
+    # print(category_brands_dict)
+    return render_template('main.html', category_names = category_names, brand_info_list=brand_info_list, brand_name= show_brand, brand_names= brands_name, category_brands_dict= category_brands_dict)
+
+
+
+
+
 
 
 
